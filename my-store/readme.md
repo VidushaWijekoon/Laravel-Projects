@@ -22,8 +22,6 @@
 
   -stripe
 
-- ## features
-
   # Client Side
 
   - Adavance Search
@@ -61,41 +59,41 @@
     - Category autocomplete
     - Color picker
 
-    - Orders
+  - Orders
 
-      - Track status
-      - Edit order
-      - Delete orders
-      - Add orders
+    - Track status
+    - Edit order
+    - Delete orders
+    - Add orders
 
-    - Customers
+  - Customers
 
-      - Create customers
-      - Delete customers
-      - Edit users
-        - Image uploads
-        - Location picker
-        - Date picker
-        - Delete photos
-      - View user
-        - List users
-        - Pagination
+    - Create customers
+    - Delete customers
+    - Edit users
+      - Image uploads
+      - Location picker
+      - Date picker
+      - Delete photos
+    - View user
+      - List users
+      - Pagination
 
-    - Chat
+  - Chat
 
-      - Real-time chat with any customer
-      - Websockets with socket.io
+    - Real-time chat with any customer
+    - Websockets with socket.io
 
-    - Push Notifications
+  - Push Notifications
 
-      - Send push notifications to all your mobile users
-      - Emails
-      - Send e-mails
-      - Create e-mail template
-      - Re-use e-mail template
-      - Rich text editor
+    - Send push notifications to all your mobile users
+    - Emails
+    - Send e-mails
+    - Create e-mail template
+    - Re-use e-mail template
+    - Rich text editor
 
-    - Authentication
-      - Login
-      - Register
-      - Logout
+  - Authentication
+    - Login
+    - Register
+    - Logout
