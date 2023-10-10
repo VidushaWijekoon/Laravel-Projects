@@ -39,6 +39,14 @@
   - Contact Page
   - Newsletter
 
+  - My Account
+
+    - Dashboard
+      - Orders
+    - Track My Order
+    - Reviews
+    - Account Details (Billing Address, Shipping Address)
+
   # Admin Dashboard
 
   - Categories
