@@ -2,7 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import FrontendLayout from "../layouts/FrontendLayout";
 import DashboardLayout from "../layouts/DashboardLayout";
 import FrontendHomepage from "../pages/frontend/Home/Home";
-import AdminDashboardHomepage from "../pages/frontend/Home/Home";
+import DashboardHomepage from "../pages/dashboard/Home/Home";
 
 const router = createBrowserRouter([
   {
@@ -21,7 +21,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <AdminDashboardHomepage />,
+        element: <DashboardHomepage />,
       },
     ],
   },
