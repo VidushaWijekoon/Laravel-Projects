@@ -1,9 +1,9 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 :root {
     --darkBlack: #131921;
     --lightBlack: #232F3E;
+    --alert-sucess: #6FCF97;
+    --text-body: #1D2F42;
+    --secondary: #1d2f42;
 }
 
 * {
@@ -14,4 +14,24 @@
     list-style-type: none;
 }
 
-body {}
+body {
+    font-family: "Poppins", sans-serif !important;
+    padding: 0;
+    position: relative;
+    color: var(--text-body);
+    font-size: 13px;
+    line-height: 15.47px;
+}
+
+.fade {
+    transition: opacity .15s linear !important;
+}
+
+.close {
+    transition: opacity .15s ease-in-out !important;
+    opacity: .7 !important;
+}
+
+.navbar-expand-lg.navbar {
+    background: white;
+}
