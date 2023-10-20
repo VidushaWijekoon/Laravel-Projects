@@ -14,7 +14,6 @@ const AlertBanner = () => {
             data-dismiss="alert"
             aria-label="Close"
             onClick={() => setIsVisible(!isVisible)}
-            asdasdasd
           >
             <img
               src="https://cartlow.com/web-assets/img/icons/icon-close.svg"

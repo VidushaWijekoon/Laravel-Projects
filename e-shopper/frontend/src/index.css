@@ -10,17 +10,25 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    text-decoration: none;
-    list-style-type: none;
 }
 
 body {
     font-family: "Poppins", sans-serif !important;
     padding: 0;
     position: relative;
-    color: var(--text-body);
+    color: #1D2F42 !important;
     font-size: 13px;
     line-height: 15.47px;
+    background-color: #f2f2f2 !important;
+}
+
+a {
+    text-decoration: none !important;
+    color: #131921 !important;
+}
+
+li {
+    list-style-type: none;
 }
 
 .fade {
@@ -34,4 +42,8 @@ body {
 
 .navbar-expand-lg.navbar {
     background: white;
+}
+
+.header {
+    background-color: #f2f2f2 !important;
 }
