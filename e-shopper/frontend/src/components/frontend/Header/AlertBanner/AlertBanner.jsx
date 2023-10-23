@@ -9,7 +9,7 @@ const AlertBanner = () => {
     <>
       {!isVisible ? (
         <div className="alert-banner max-sm:hidden max-lg:hidden bg-alertSuccess flex z-[100] border-none m-0 text-sm rounded-none text-secondary px-4 py-0 items-center">
-          <div className="close px-[1.25rem]">
+          <div className="close px-12">
             <IconButton onClick={() => setIsVisible(!isVisible)}>
               <ClearIcon
                 className="text-textMuted cursor-pointer"
