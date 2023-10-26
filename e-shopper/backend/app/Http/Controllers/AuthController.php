@@ -11,6 +11,7 @@ use App\Http\Resources\UserResource;
 
 class AuthController extends Controller
 {
+    // register new user
     public function register(RegisterRequest $request){
         $data = $request->validated();
 
@@ -30,7 +31,7 @@ class AuthController extends Controller
 
     }
 
-     // login a user method
+    // login a user method
     public function login(LoginRequest $request) {
         $data = $request->validated();
 
@@ -51,7 +52,7 @@ class AuthController extends Controller
         ])->withCookie($cookie);
     }
 
-        // logout a user method
+    // logout a user method
     public function logout(Request $request) {
         $request->user()->currentAccessToken()->delete();
 

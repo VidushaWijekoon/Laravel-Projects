@@ -3,7 +3,6 @@ import { FaMagnifyingGlass } from "react-icons/fa6";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
-import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 
 import { Link } from "react-router-dom";
 import { useState } from "react";
@@ -50,12 +49,6 @@ const TopNavbar = () => {
                 <FaMagnifyingGlass className="bg-red text-xl" />
               </IconButton>
             </div>
-          </div>
-
-          <div className="hidden max-sm:flex">
-            <IconButton>
-              <MenuOutlinedIcon />
-            </IconButton>
           </div>
 
           {/* Right Side Nav */}

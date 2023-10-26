@@ -5,6 +5,7 @@ import Footer from "../components/frontend/Footer/Footer";
 const GuestLayout = () => {
   return (
     <>
+      <div className=""></div>
       <Header />
       <Outlet />
       <Footer />
