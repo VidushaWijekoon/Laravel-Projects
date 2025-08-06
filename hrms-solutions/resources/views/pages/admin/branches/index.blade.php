@@ -2,7 +2,27 @@
 
 @section('content')
     @include('components.breadcrumbs.breadcrumbs', ['page_title' => $title])
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
 
+    @if (session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
+
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul class="mb-0">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <div class="row g-3 mt-2">
         <div class="col-xxl-12 col-xl-12">
             <div class="card overflow-hidden">
@@ -80,7 +100,8 @@
 
                     <div class="card-body tab-pane p-3" id="create-new-branch" role="tabpanel"
                         aria-labelledby="contact-create-new-branch-tab">
-                        <form action="/Branches/Create" method="POST" class="validate">
+                        <form action="{{ route('admin.branches.store') }}" method="POST" class="validate">
+                            @csrf
                             <div class="row">
                                 <!-- Left Column -->
                                 <div class="col-md-6">

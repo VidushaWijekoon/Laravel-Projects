@@ -14,7 +14,12 @@ Route::get('/superadmin/dashboard', [SuperAdminDashboard::class, 'index'])->name
 
 Route::prefix('/admin')->group(function () {
     Route::get('/dashboard', [AdminDashboard::class, 'index'])->name('admin.dashboard.index');
-    Route::get('/branches', [BranchesController::class, 'index'])->name('admin.branches');
+
+    Route::prefix('/branches')->group(function () {
+        Route::get('/', [BranchesController::class, 'index'])->name('admin.branches');
+        Route::post('/store', [BranchesController::class, 'store'])->name('admin.branches.store');  
+    });
+
     Route::get('/departments', [DepartmentsController::class, 'index'])->name('admin.departments');
     Route::get('/designations', [DesignationsController::class, 'index'])->name('admin.designations');
     Route::get('/employees', [EmployeesController::class, 'index'])->name('admin.employees');
