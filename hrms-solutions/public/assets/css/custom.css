@@ -1,0 +1,49 @@
+@font-face {
+    font-family: Exo2;
+    font-style: normal;
+    font-weight: 400;
+    src: local("Exo2 Regular"), local(Exo2-Regular),
+        url(../fonts/Exo2-Regular.ttf) format("woff2");
+    font-display: swap;
+}
+:root {
+    --main-font: Exo2, sans-serif;
+}
+
+body {
+    font-family: var(--main-font) !important;
+}
+
+/*--------------------------------------------------------------
+# Breadcrumbs
+--------------------------------------------------------------*/
+.breadcrumbs {
+    background: #f7f7f7;
+    border-bottom: 1px solid #ededed;
+}
+
+.breadcrumbs h2 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #545454;
+}
+
+.breadcrumbs ol {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0 0 5px 0;
+    margin: 0;
+    font-size: 14px;
+}
+
+.breadcrumbs ol li + li {
+    padding-left: 10px;
+}
+
+.breadcrumbs ol li + li::before {
+    display: inline-block;
+    padding-right: 10px;
+    color: #6e6e6e;
+    content: "/";
+}

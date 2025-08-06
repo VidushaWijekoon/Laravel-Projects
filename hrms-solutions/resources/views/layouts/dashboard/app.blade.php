@@ -52,6 +52,7 @@
     </main>
     @include('components.dashboard.settings')
     @include('libraries.dashboard.scripts')
+    @stack('scripts')
 </body>
 
 </html>

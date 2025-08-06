@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="{{ asset('assets/css/theme.min.css') }}" id="style-default">
 <link rel="stylesheet" href="{{ asset('assets/css/user-rtl.min.css') }}" id="user-style-rtl">
 <link rel="stylesheet" href="{{ asset('assets/css/user.min.css') }}" id="user-style-default">
+<link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}" id="user-style-default">
 
 <script>
     var isRTL = JSON.parse(localStorage.getItem("isRTL"));
@@ -24,3 +25,4 @@
         userLinkRTL.setAttribute("disabled", true);
     }
 </script>
+
