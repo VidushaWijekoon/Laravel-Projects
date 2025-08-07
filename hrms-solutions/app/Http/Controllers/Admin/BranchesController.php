@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use DB;
 use Exception;
 use Carbon\Carbon;
 use App\Models\Admin\Branch;
@@ -15,8 +14,7 @@ class BranchesController extends Controller
 {
     public function index()
     {
-        $branches = Branch::all();
-
+        $page_data['branches'] = Branch::all();
         $page_data['title'] = "Branches";
 
         return view("pages.admin.branches.index", $page_data);
@@ -24,6 +22,9 @@ class BranchesController extends Controller
 
     public function store(BranchesRequest $request)
     {
+        // $method = $request->method(); 
+        // dd($method);
+
         $validated = $request->validated();
 
         $post_data = [
@@ -46,13 +47,19 @@ class BranchesController extends Controller
         ];
 
         try {
-            $queries = Branch::create($post_data);
-            dd($queries);
-
-            // return redirect()->route('branches.index')->with('success', 'Branch created successfully.');
+            Branch::create($post_data);
+            // $queries = Branch::create($post_data);
+            // dd($queries);
+            return redirect()->route('admin.branches')->with('success', 'Branch created successfully.');
         } catch (Exception $e) {
-            Log::error('Branch creation failed: ' . $e->getMessage());
-            return redirect()->back()->withInput()->with('error', 'Something went wrong. Please try again.');
+            Log::error('Branch creation failed: ' . $e->getMessage(), [
+                'file' => $e->getFile(),
+                'line' => $e->getLine(),
+                'trace' => $e->getTraceAsString(),
+            ]);
+            return response()->json(['status' => 'error', 'message' => $e->getMessage(),], 500);
+            dd($e);
+            // return redirect()->back()->withInput()->with('error', 'Something went wrong. Please try again.');
         }
     }
 }

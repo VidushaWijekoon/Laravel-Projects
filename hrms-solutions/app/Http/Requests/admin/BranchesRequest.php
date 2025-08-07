@@ -22,12 +22,12 @@ class BranchesRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'        => 'required|string|max:50',
-            'email'       => 'required|email|max:50',
-            'contactno'   => 'required|string|max:20',
-            'emirates'    => 'required|string|max:15',
-            'address'     => 'required|string|max:100',
-            'citycode'    => 'required|string|max:25',
+            'name'            => 'required|string|max:50',
+            'email'           => 'required|email|max:50',
+            'contactno'       => 'required|string|max:20',
+            'emirates'        => 'required|string|max:15',
+            'address'         => 'required|string|max:100',
+            'citycode'        => 'required|string|max:25',
             'landlineno'      => 'nullable|string|max:20',
             'faxno'           => 'nullable|string|max:20',
             'postalcode'      => 'nullable|string|max:20',
