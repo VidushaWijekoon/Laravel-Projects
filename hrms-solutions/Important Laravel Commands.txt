@@ -17,6 +17,14 @@ Laraval Commands
 13.    	php artisan optimize:clear		=> Clear all caches (recommended during dev)
 14.    	composer dump-autoload             => Rebuild the class loader after adding/removing files
 
+
+✅ Bootstrap Auth
+composer require laravel/ui
+php artisan ui bootstrap --auth
+npm install
+npm run dev
+
+
 ✅ Steps to Clone & Run a Laravel Project
 
 1.     git clone https://github.com/your-username/your-laravel-project.git	=> clone the project
