@@ -2,60 +2,78 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Requests\AuthRequest;
-use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Providers\RouteServiceProvider;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\Http\Controllers\Controller;
 
 class LoginController extends Controller
 {
-    use AuthenticatesUsers;
-
-    protected $redirectTo = RouteServiceProvider::HOME;
-
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        // No need for default auth middleware since we handle session manually
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        return view('auth.login');
-    }
+        if ($request->session()->get('is_loggedin')) {
+            $role = $request->session()->get('role');
 
-    public function login_check(AuthRequest $request)
-    {
-        dd($request);
-        $credentials = [
-            'EmailAddress' => $request->email,
-            'password'     => $request->password,
-        ];
-
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-
-            session([
-                'role'  => Auth::user()->Role,
-                'email' => Auth::user()->EmailAddress,
-            ]);
-
-            switch (Auth::user()->Role) {
+            switch ($role) {
                 case 'SuperAdmin':
                     return redirect()->route('super-admin-dashboard');
-
                 case 'Admin':
                     return redirect()->route('admin.dashboard');
-
-                default:
-                    return redirect()->route('home');
+                case 'Manager':
+                    return redirect()->route('manager-dashboard');
+                case 'Employee':
+                    return redirect()->route('employee-dashboard');
             }
         }
 
+        return view('auth.login');
+    }
 
-        return back()->withErrors([
-            'email' => 'Invalid credentials.',
+    public function login_check(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required'
         ]);
+
+        $credentials = [
+            'EmailAddress' => $request->email,
+            'password' => $request->password,
+        ];
+
+        if (Auth::guard('admin')->attempt($credentials)) {
+            $admin = Auth::guard('admin')->user();
+            $role = $admin->Role;
+
+            $request->session()->regenerate();
+
+            session([
+                'email' => $admin->EmailAddress,
+                'role' => $role,
+                'loggedin_id' => $admin->id,
+                'is_loggedin' => true,
+                'username' => $role,
+            ]);
+
+            switch ($role) {
+                case 'SuperAdmin':
+                    return redirect()->route('super-admin-dashboard');
+                case 'Admin':
+                    return redirect()->route('admin.dashboard');
+                case 'Manager':
+                    return redirect()->route('manager-dashboard');
+                case 'Employee':
+                    return redirect()->route('employee-dashboard');
+                default:
+                    return redirect()->route('login.page');
+            }
+        }
+
+        return redirect()->route('login.page')->with('error', 'Invalid Username or Password');
     }
 
     public function forget_password()
@@ -65,6 +83,16 @@ class LoginController extends Controller
 
     public function check_forget_password()
     {
-        dd($_POST);
+        dd(request()->all());
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::guard('admin')->logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('login.page')->with('success', 'You have been logged out successfully.');
     }
 }

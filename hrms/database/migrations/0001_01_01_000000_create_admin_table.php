@@ -9,18 +9,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('admin', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
-
             $table->id();
-            $table->string('EmployeeId')->unique()->index();
+            $table->string('EmployeeId', 11)->unique()->index();
             $table->string('Role');
-            $table->string('EmailAddress');
-            $table->string('Password');
+            $table->string('EmailAddress')->unique();
+            $table->string('password'); // lowercase
             $table->rememberToken();
             $table->timestamps();
         });
     }
-     
+
     public function down(): void
     {
         Schema::dropIfExists('admin');
