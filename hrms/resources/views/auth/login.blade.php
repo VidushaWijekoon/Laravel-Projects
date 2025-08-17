@@ -2,6 +2,28 @@
 
 @section('content')
     <div class="container-fluid">
+        @if (session('error'))
+            <div class="position-fixed top-0 end-0 p-3" style="z-index: 1050">
+                <div id="errorToast" class="toast align-items-center text-bg-danger border-0 show" role="alert"
+                    aria-live="assertive" aria-atomic="true">
+                    <div class="d-flex">
+                        <div class="toast-body">
+                            {{ session('error') }}
+                        </div>
+                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                            aria-label="Close"></button>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                var toastEl = document.getElementById('errorToast');
+                var toast = new bootstrap.Toast(toastEl, {
+                    delay: 5000
+                });
+                toast.show();
+            </script>
+        @endif
         <div class="row min-vh-100 flex-center g-0">
             <div class="col-lg-8 col-xxl-5 py-3 position-relative">
                 <img class="bg-auth-circle-shape" src="{{ asset('assets/img/icons/spot-illustrations/bg-shape.png') }}"
@@ -19,8 +41,8 @@
                                     <div class="z-1 position-relative">
                                         <p class="opacity-75 text-white">
                                             {{ __('With the power of Falcon, you can now focus
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        only on functionaries for your digital products, while leaving the UI design
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        on us!') }}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                only on functionaries for your digital products, while leaving the UI design
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                on us!') }}
                                         </p>
                                     </div>
                                 </div>
@@ -81,11 +103,7 @@
                                             </button>
                                         </div>
 
-                                        @if (session('error'))
-                                            <div class="alert alert-danger">
-                                                {{ session('error') }}
-                                            </div>
-                                        @endif
+
 
                                         @if ($errors->any())
                                             <div class="mb-3">

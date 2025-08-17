@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Http\Middleware;
 
@@ -11,17 +11,12 @@ class CheckAdminRole
     {
         $email = $request->session()->get('email');
 
-        if (!$email) {
-            return redirect()->route('login.page')->with('error', 'Access denied.');
-        }
+        $email ?: abort(redirect()->route('login.page')->with('error', 'Access denied.'));
 
         $user = DB::table('admin')->where('EmailAddress', $email)->first();
-
-        if (!$user || !in_array($user->Role, $roles)) {
-            return redirect()->route('login.page')->with('error', 'Access denied.');
-        }
-
-        $request->merge(['admin_user' => $user]);
+        (!$user || !in_array($user->Role, $roles))
+            ? abort(redirect()->route('login.page')->with('error', 'Access denied.'))
+            : $request->merge(['admin_user' => $user]);
 
         return $next($request);
     }
